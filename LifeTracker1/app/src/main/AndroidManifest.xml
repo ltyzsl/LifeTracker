@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 通知权限 (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 闹钟精确触发 (Android 12+) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <application
+        android:name=".LifeTrackerApp"
+        android:allowBackup="true"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:label="LifeTracker"
+        android:theme="@style/Theme.Material3.Light.NoActionBar"
+        android:supportsRtl="true"
+        android:exported="false">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 提醒弹窗 Activity -->
+        <activity
+            android:name=".ui.reminder.ReminderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:showOnLockScreen="true"
+            android:turnScreenOn="true"
+            android:showWhenLocked="true" />
+
+        <!-- 倒计时通知 Receiver -->
+        <receiver
+            android:name=".receiver.CountdownReceiver"
+            android:exported="false" />
+
+        <!-- 打卡提醒 Receiver -->
+        <receiver
+            android:name=".receiver.CheckInReceiver"
+            android:exported="false" />
+
+    </application>
+</manifest>
